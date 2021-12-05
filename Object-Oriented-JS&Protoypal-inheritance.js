@@ -16,7 +16,7 @@ const person = {
     getFullName: function() {
         return this.lastName + ' ' + this.lastName
     }
-}
+}aaa
 
 const daniel = {
     fristName: 'Daniel',
