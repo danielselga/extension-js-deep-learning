@@ -251,4 +251,10 @@ class Node {
     }
 }
 
+// Doubly linked list
+// Doubly linked list are almost identical to singly linked list except there is an additional pointer to previous node.
+// Better than singly linked list for finding nodes and can be done in the half the time.
+// However, they do take up more memory considering the extra pointer.
+
+
 
