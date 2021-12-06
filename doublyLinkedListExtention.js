@@ -119,9 +119,103 @@ class Node {
       // Increment the length.
       // Return the list.
 
+    unshift (val) { // Unshift -> Adding the node to the beginning of the doubly linked list.
+      const newNode = new Node(val)
+      if (this.length === 0) {
+        this.head = newNode
+        this.tail = newNode
+      } else {
+        this.head.prev = newNode
+        newNode.next = this.head
+        this.head = newNode
+      }
+      this.length++
+      return this
+    }
 
-    unshift () {
+    // Get pseudocode
+    // If the index is less than 0 or greater or equal to the length, return null.
+    // If the index is less than or equal to the half the length of the list:
+      // Loop through the list starting from the head and loop towards the middle.
+      // Return the node once it is found.
+    // If the index is greater than the half the length of the list:
+      // Loop through the list starting from the tail and loop towards the the middle.
+      // Return the node once it is found.
 
+    get(index) { // Get -> Accessing a node in a doubly linked list by its position.
+      if (index < 0 || index >= this.index) {
+        return null
+      }
+
+      if (index <= this.length/2) {
+      
+      let count = 0
+      const current = this.head
+
+      while (count != index) {
+        current = current.next
+        count++
+      } 
+      
+      } else {
+        let count = this.length - 1 
+        let current = this.tail
+        while (count != index) {
+          current = current.prev
+          count++
+        }
+      }
+
+      return current
+    }
+
+    // Set pseudocode
+    // Create a variable which is the result of the get method at the index passed to the function.
+      // If the get method returns a valid node, set the value of that node to be the value passed to the function.
+      //Return true.
+
+    set (index, val) { // Set -> Replacing the value of a node to the in a doubly linked list.
+      const foundNode = this.get(index)
+      if  (foundNode != null) {
+        foundNode.val = val
+        return true
+      }
+      return false
+    }
+
+    // Insert pseudocode
+    // If the index is less than zero or greater than or equal to the length return false.
+    // If the index is 0, unshift.
+    // If the index is the same as the length, push.
+    // Use the get method to access the index -1.
+    // Set the next and prev properties on the correct nodes to link everything together.
+    // Increment the length.
+    // Return true.
+
+
+    insert(index, val) { // Insert -> Adding a node in a doubly linked list by a certain position.
+      if (index < 0 || index this.length) {
+        return false
+      }
+
+      if (index === 0) {
+        return !!this.unshift(val)
+      }
+
+      if (index === this.length) {
+        return !!this.push(val)
+      }
+
+      const newNode = new Node(val)
+      const beforeNode = this.get(index - 1)
+      const afterNode = beforeNode.next
+
+      beforeNode.next = newNode
+      newNode.prev = beforeNode
+      newNode.next = afterNode
+      afterNode.prev = newNode
+      this.length++
+      return true
     }
 }
 
